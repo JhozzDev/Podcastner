@@ -1,1 +1,1 @@
-# Recopilacion de podcast con captions para shadowing o listening practicing.
+# Recopilacion de podcast con captions para shadowing o listening practicing. (EN PROCESO)
