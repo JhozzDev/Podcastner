@@ -11,22 +11,23 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="80"/>
         </Grid.RowDefinitions>
 
 
         <TextBlock
+            Grid.Row="0"
             Text="🎧 Podcastner"
             FontSize="32"
             FontWeight="Bold"
-            HorizontalAlignment="Center"/>
-
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"/>
 
 
         <ListBox
             Grid.Row="1"
             Name="PodcastList"
             Margin="10">
-
 
             <ListBox.ItemTemplate>
 
@@ -55,8 +56,31 @@
 
             </ListBox.ItemTemplate>
 
-
         </ListBox>
+
+
+        <StackPanel
+            Grid.Row="2"
+            Orientation="Horizontal"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center">
+
+
+            <Button
+                Content="Play"
+                Width="100"
+                Margin="10"
+                Click="Play_Click"/>
+
+
+            <Button
+                Content="Stop"
+                Width="100"
+                Margin="10"
+                Click="Stop_Click"/>
+
+
+        </StackPanel>
 
 
     </Grid>

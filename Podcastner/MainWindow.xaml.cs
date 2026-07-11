@@ -1,4 +1,5 @@
 ﻿using Podcastner.Models;
+using System.Numerics;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,13 +13,14 @@ using System.Windows.Shapes;
 namespace Podcastner;
 
 
+
 public partial class MainWindow : Window
 {
 
+    MediaPlayer player = new MediaPlayer();
     public MainWindow()
     {
         InitializeComponent();
-
 
         List<Podcast> podcasts =
         [
@@ -26,7 +28,8 @@ public partial class MainWindow : Window
             {
                 Title = "6 Minute English",
                 Author = "BBC Learning English",
-                Description = "Improve your vocabulary with short lessons."
+                Description = "Improve your vocabulary with short lessons.",
+                AudioPath = "C:\\Users\\Cristian hiciano\\source\\repos\\Podcastner\\Podcastner\\Resources\\Audio\\You.mp3"
             },
 
 
@@ -49,4 +52,20 @@ public partial class MainWindow : Window
 
         PodcastList.ItemsSource = podcasts;
     }
-}
+ 
+private void Play_Click(object sender, RoutedEventArgs e)
+    {
+        if (PodcastList.SelectedItem is Podcast podcast)
+        {
+            player.Open(new Uri(
+                podcast.AudioPath,
+                UriKind.Relative));
+
+            player.Play();
+        }
+    }
+
+private void Stop_Click(object sender, RoutedEventArgs e)
+{
+    player.Stop();
+}     }
