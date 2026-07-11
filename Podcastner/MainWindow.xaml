@@ -11,9 +11,6 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="60"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
 
         <TextBlock
@@ -72,11 +69,6 @@
                 </TransformGroup>
             </StackPanel.RenderTransform>
 
-        </StackPanel>
-        <ListBox
-            Grid.Row="1"
-            x:Name="Lirycs"
-            Margin="337,10,21,10" Background="#FF868484" BorderBrush="#FF003DF3">
 
             <ListBox.ItemTemplate>
 
@@ -105,7 +97,22 @@
 
             </ListBox.ItemTemplate>
 
-        </ListBox>
+
+            <Button
+                Content="Play"
+                Width="100"
+                Margin="10"
+                Click="Play_Click"/>
+
+
+            <Button
+                Content="Stop"
+                Width="100"
+                Margin="10"
+                Click="Stop_Click"/>
+
+
+        </StackPanel>
 
         <TextBlock x:Name="Lyrics_label"
       FontSize="32"

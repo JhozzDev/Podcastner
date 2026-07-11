@@ -18,14 +18,10 @@ using System.Windows.Threading;
 public partial class MainWindow : Window
 {
 
-    MediaPlayer player = new MediaPlayer();
-    DispatcherTimer timer = new DispatcherTimer();
     public MainWindow()
     {
         InitializeComponent();
 
-        timer.Interval = TimeSpan.FromSeconds(1);
-        timer.Tick += Timer_Tick;
 
         List<Podcast> podcasts =
         [
@@ -57,42 +53,4 @@ public partial class MainWindow : Window
 
         PodcastList.ItemsSource = podcasts;
     }
-
-    private void Play_Click(object sender, RoutedEventArgs e)
-    {
-        if (PodcastList.SelectedItem is Podcast podcast)
-        {
-            player.Open(new Uri(
-                podcast.AudioPath,
-                UriKind.Relative));
-
-
-            player.Play();
-
-
-            timer.Start();
-        }
-    }
-
-    private void Stop_Click(object sender, RoutedEventArgs e)
-    {
-        player.Stop();
-
-        timer.Stop();
-
-        TimeText.Text = "00:00 / 00:00";
-    }
-    private void Timer_Tick(object sender, EventArgs e)
-    {
-        if (player.NaturalDuration.HasTimeSpan)
-        {
-            TimeSpan actual = player.Position;
-            TimeSpan total = player.NaturalDuration.TimeSpan;
-
-
-            TimeText.Text =
-                $"{actual:mm\\:ss} / {total:mm\\:ss}";
-        }
-    }
-
 }
