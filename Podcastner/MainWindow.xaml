@@ -6,27 +6,29 @@
         Width="900">
 
 
-    <Grid Margin="20">
+    <Grid Margin="20" Background="#00000000">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
 
-
         <TextBlock
+            Grid.Row="0"
             Text="🎧 Podcastner"
             FontSize="32"
             FontWeight="Bold"
-            HorizontalAlignment="Center"/>
-
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"/>
 
 
         <ListBox
             Grid.Row="1"
             Name="PodcastList"
-            Margin="10">
-
+            Margin="10,10,546,10" BorderBrush="#FF003EF9">
 
             <ListBox.ItemTemplate>
 
@@ -55,10 +57,74 @@
 
             </ListBox.ItemTemplate>
 
-
         </ListBox>
 
 
+        <StackPanel
+            Grid.Row="1"
+            Orientation="Horizontal" Margin="26,340,276,0" RenderTransformOrigin="0.5,0.5" Height="66" Grid.RowSpan="3" HorizontalAlignment="Left">
+            <StackPanel.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="-0.34" AngleX="-1.106"/>
+                    <RotateTransform Angle="0.29"/>
+                    <TranslateTransform Y="-1.495" X="0.975"/>
+                </TransformGroup>
+            </StackPanel.RenderTransform>
+
+        </StackPanel>
+        <ListBox
+            Grid.Row="1"
+            x:Name="Lirycs"
+            Margin="337,10,21,10" Background="#FF868484" BorderBrush="#FF003DF3">
+
+            <ListBox.ItemTemplate>
+
+                <DataTemplate>
+
+                    <StackPanel Margin="10">
+
+                        <TextBlock
+                            Text="{Binding Title}"
+                            FontSize="22"
+                            FontWeight="Bold"/>
+
+
+                        <TextBlock
+                            Text="{Binding Author}"
+                            FontSize="16"/>
+
+
+                        <TextBlock
+                            Text="{Binding Description}"
+                            FontSize="14"/>
+
+                    </StackPanel>
+
+                </DataTemplate>
+
+            </ListBox.ItemTemplate>
+
+        </ListBox>
+
+        <TextBlock x:Name="Lyrics_label"
+      FontSize="32"
+      FontWeight="Bold" Grid.Row="2" Margin="357,20,310,329" Foreground="White"><Run Text="Captions"/><LineBreak/><Run/></TextBlock>
+        <TextBlock
+    x:Name="TimeText"
+    Text="00:00 / 00:00"
+    FontSize="18" Foreground="#FF291C1C"
+    Margin="550,51,94,0" Grid.Row="2" RenderTransformOrigin="0.502,0.51" VerticalAlignment="Top" Grid.RowSpan="2"
+    />
+        <Button
+                Content="Play"
+                Click="Play_Click" RenderTransformOrigin="0.496,0.591" Background="#FF69E060" Margin="16,35,698,11" Grid.Row="2" Grid.RowSpan="2"/>
+        <Button
+                Content="Stop"
+                Click="Stop_Click" Background="#FFE64646" Margin="172,35,546,11" Grid.RowSpan="2" Grid.Row="2"/>
+
+
     </Grid>
+
 
 </Window>
