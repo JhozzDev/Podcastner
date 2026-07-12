@@ -18,11 +18,19 @@ public class PodcastService
 
         string query = @"
 {
-    getPodcastSeries(name: ""The Daily""){
-        uuid
-        name
-        description
+  getPodcastSeries(name:""The Daily""){
+    uuid
+    name
+    description
+    imageUrl
+
+    episodes{
+      uuid
+      name
+      description
+      audioUrl
     }
+  }
 }";
 
         string body = $$"""
