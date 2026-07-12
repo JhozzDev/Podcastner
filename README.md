@@ -24,6 +24,7 @@ Podcastner/
 ├── Models/
 │   ├── Podcast.cs
 │   ├── Episode.cs
+│   ├── EpisodeResponse.cs
 │   └── PodcastSearchResponse.cs
 │
 ├── Services/
