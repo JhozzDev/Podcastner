@@ -1,19 +1,48 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text.Json.Serialization;
 
-namespace Podcastner.Models
+namespace Podcastner.Models;
+
+public class PodcastResponse
 {
-    public class Podcast
-    {
-        public string Title { get; set; }
+    [JsonPropertyName("data")]
+    public Data Data { get; set; }
+}
 
-        public string Author { get; set; }
+public class Data
+{
+    [JsonPropertyName("getPodcastSeries")]
+    public Podcast Podcast { get; set; }
+}
 
-        public string Description { get; set; }
+public class Podcast
+{
+    [JsonPropertyName("uuid")]
+    public string Uuid { get; set; }
 
-        public string AudioPath { get; set; }
-    }
+    [JsonPropertyName("name")]
+    public string Name { get; set; }
+
+    [JsonPropertyName("itunesId")]
+    public long ItunesId { get; set; }
+
+    [JsonPropertyName("description")]
+    public string Description { get; set; }
+
+    [JsonPropertyName("imageUrl")]
+    public string ImageUrl { get; set; }
+
+    [JsonPropertyName("totalEpisodesCount")]
+    public int TotalEpisodesCount { get; set; }
+
+    [JsonPropertyName("itunesInfo")]
+    public ItunesInfo ItunesInfo { get; set; }
+}
+
+public class ItunesInfo
+{
+    [JsonPropertyName("uuid")]
+    public string Uuid { get; set; }
+
+    [JsonPropertyName("baseArtworkUrlOf")]
+    public string BaseArtworkUrlOf { get; set; }
 }

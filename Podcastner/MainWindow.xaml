@@ -4,7 +4,7 @@
         Title="Podcastner"
         Height="650"
         Width="1000"
-        PreviewKeyDown="Window_PreviewKeyDown">
+     >
 
     <Grid Margin="20">
 
@@ -19,28 +19,43 @@
             <RowDefinition Height="90"/>
         </Grid.RowDefinitions>
 
-        <!-- Título -->
         <TextBlock
             Grid.ColumnSpan="2"
-            Text="🎧 Podcastner"
+            Text="Podcastner"
             FontSize="32"
             FontWeight="Bold"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"/>
-
-        <!-- Lista de Podcasts -->
         <GroupBox
             Grid.Row="1"
             Header="Podcasts"
             Margin="0,10,10,10">
+            
+            <ListBox x:Name="PodcastList">
 
-            <ListBox
-                x:Name="PodcastList"
-                DisplayMemberPath="Title"/>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+
+                        <StackPanel Margin="10">
+
+                            <TextBlock
+                    Text="{Binding Name}"
+                    FontSize="22"
+                    FontWeight="Bold"/>
+
+                            <TextBlock
+                    Text="{Binding TotalEpisodesCount, StringFormat=Episodios: {0}}"
+                    FontWeight="SemiBold"/>
+
+                        </StackPanel>
+
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+
+            </ListBox>
 
         </GroupBox>
 
-        <!-- Panel derecho -->
         <Border
             Grid.Row="1"
             Grid.Column="1"
@@ -111,34 +126,34 @@
                 HorizontalAlignment="Center">
 
                 <Button
-                    Content="⏮ -10s"
+                    Content=" -10s"
                     Width="80"
                     Margin="5"
-                    Click="Back10_Click"/>
+                    />
 
                 <Button
-                    Content="▶ Play"
+                    Content="Play"
                     Width="90"
                     Margin="5"
-                    Click="Play_Click"/>
+                 />
 
                 <Button
-                    Content="⏸ Pause"
+                    Content="Pause"
                     Width="90"
                     Margin="5"
-                    Click="Pause_Click"/>
+                  />
 
                 <Button
-                    Content="⏹ Stop"
+                    Content="Stop"
                     Width="90"
                     Margin="5"
-                    Click="Stop_Click"/>
+                  />
 
                 <Button
-                    Content="+10s ⏭"
+                    Content="+10s "
                     Width="80"
                     Margin="5"
-                    Click="Forward10_Click"/>
+                 />
 
             </StackPanel>
 
