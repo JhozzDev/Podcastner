@@ -26,13 +26,40 @@ public partial class MainWindow : Window
         {
             PodcastService service = new();
 
-            PodcastResponse respuesta =
-                await service.ObtenerPodcast();
+            PodcastSearchResponse respuesta =
+                await service.BuscarPodcasts("english");
 
-            PodcastList.ItemsSource = new List<Podcast>
-        {
-            respuesta.Data.Podcast
-        };
+
+            if (respuesta == null)
+            {
+                MessageBox.Show("Respuesta es null");
+                return;
+            }
+
+
+            if (respuesta.Data == null)
+            {
+                MessageBox.Show("Data es null");
+                return;
+            }
+
+
+            if (respuesta.Data.SearchForTerm == null)
+            {
+                MessageBox.Show("SearchForTerm es null");
+                return;
+            }
+
+
+            if (respuesta.Data.SearchForTerm.PodcastSeries == null)
+            {
+                MessageBox.Show("PodcastSeries es null");
+                return;
+            }
+
+
+            PodcastList.ItemsSource =
+                respuesta.Data.SearchForTerm.PodcastSeries;
 
         }
         catch (Exception ex)
@@ -40,8 +67,6 @@ public partial class MainWindow : Window
             MessageBox.Show(ex.Message);
         }
     }
-
-
     private void EpisodeList_SelectionChanged(object sender, RoutedEventArgs e)
     {
         if (EpisodeList.SelectedItem is Episode episode)
@@ -74,12 +99,16 @@ public partial class MainWindow : Window
         {
             PodcastTitle.Text = podcast.Name;
             PodcastDescription.Text = podcast.Description;
-
             PodcastImage.Source = new BitmapImage(
                 new Uri(podcast.ImageUrl)
             );
 
             EpisodeList.ItemsSource = podcast.Episodes;
         }
+    }
+
+    private void EpisodeList_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+    {
+
     }
 }
