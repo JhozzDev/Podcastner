@@ -36,6 +36,9 @@ public class Podcast
 
     [JsonPropertyName("itunesInfo")]
     public ItunesInfo ItunesInfo { get; set; }
+
+    [JsonPropertyName("episodes")]
+    public List<Episode> Episodes { get; set; } = new();
 }
 
 public class ItunesInfo

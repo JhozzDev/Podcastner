@@ -18,7 +18,7 @@ public class PodcastService
 
         string query = @"
 {
-  getPodcastSeries(name:""The Daily""){
+  getPodcastSeries(name:""BBC""){
     uuid
     name
     description

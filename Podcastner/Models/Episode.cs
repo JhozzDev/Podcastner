@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text.Json.Serialization;
 
-namespace Podcastner.Models
+public class Episode
 {
-    internal class Episode
-    {
-    }
+    [JsonPropertyName("uuid")]
+    public string Uuid { get; set; }
+
+    [JsonPropertyName("name")]
+    public string Name { get; set; }
+
+    [JsonPropertyName("description")]
+    public string Description { get; set; }
+
+    [JsonPropertyName("audioUrl")]
+    public string AudioUrl { get; set; }
 }

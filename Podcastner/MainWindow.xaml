@@ -2,170 +2,332 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Podcastner"
-        Height="650"
-        Width="1000"
-     >
+        Height="750"
+        Width="1200"
+        Background="#121212"
+  >
+
 
     <Grid Margin="20">
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="320"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-
         <Grid.RowDefinitions>
-            <RowDefinition Height="70"/>
+            <RowDefinition Height="80"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="90"/>
+            <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
 
-        <TextBlock
-            Grid.ColumnSpan="2"
-            Text="Podcastner"
-            FontSize="32"
-            FontWeight="Bold"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"/>
-        <GroupBox
-            Grid.Row="1"
-            Header="Podcasts"
-            Margin="0,10,10,10">
-            
-            <ListBox x:Name="PodcastList">
 
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-
-                        <StackPanel Margin="10">
-
-                            <Image
-    Source="{Binding ImageUrl}"
-    Width="150"
-    Height="150"
-    Stretch="UniformToFill"
-    Margin="5"/>
-
-                            <TextBlock
-                    Text="{Binding Name}"
-                    FontSize="22"
-                    FontWeight="Bold"/>
-
-                            <TextBlock
-                    Text="{Binding TotalEpisodesCount, StringFormat=Episodios: {0}}"
-                    FontWeight="SemiBold"/>
-
-                        </StackPanel>
-
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-
-            </ListBox>
-
-        </GroupBox>
-
+        <!-- HEADER -->
         <Border
-            Grid.Row="1"
-            Grid.Column="1"
-            Margin="10"
-            BorderBrush="Gray"
-            BorderThickness="1"
-            CornerRadius="10"
+            Background="#1DB954"
+            CornerRadius="15"
             Padding="20">
 
-            <StackPanel>
-
-                <TextBlock
-                    x:Name="PodcastTitle"
-                    Text="Selecciona un podcast"
-                    FontSize="26"
-                    FontWeight="Bold"
-                    Margin="0,0,0,10"/>
-
-                <TextBlock
-                    x:Name="PodcastAuthor"
-                    Text=""
-                    FontSize="18"
-                    Margin="0,0,0,20"/>
-
-                <TextBlock
-                    Text="Descripción"
-                    FontWeight="Bold"
-                    FontSize="16"/>
-
-                <TextBlock
-                    x:Name="PodcastDescription"
-                    TextWrapping="Wrap"
-                    Margin="0,5,0,20"/>
-
-                <TextBlock
-                    Text="Captions"
-                    FontWeight="Bold"
-                    FontSize="16"/>
-
-                <TextBox
-                    x:Name="LyricsBox"
-                    Height="220"
-                    AcceptsReturn="True"
-                    TextWrapping="Wrap"
-                    IsReadOnly="True"
-                    VerticalScrollBarVisibility="Auto"/>
-
-            </StackPanel>
+            <TextBlock
+                Text="🎧 Podcastner"
+                FontSize="36"
+                FontWeight="Bold"
+                Foreground="White"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"/>
 
         </Border>
 
-        <!-- Controles -->
-        <StackPanel
+
+        <!-- CONTENIDO -->
+        <Grid Grid.Row="1"
+              Margin="0,20,0,20">
+
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="320"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+
+
+            <!-- PODCASTS -->
+            <Border
+                Background="#181818"
+                CornerRadius="15"
+                Padding="15"
+                Margin="0,0,15,0">
+
+
+                <StackPanel>
+
+
+                    <TextBlock
+                        Text="Podcasts"
+                        FontSize="22"
+                        FontWeight="Bold"
+                        Foreground="White"
+                        Margin="0,0,0,10"/>
+
+
+                    <ListBox
+                        x:Name="PodcastList"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        SelectionChanged="PodcastList_SelectionChanged">
+
+
+                        <ListBox.ItemTemplate>
+
+                            <DataTemplate>
+
+                                <Border
+                                    Background="#242424"
+                                    CornerRadius="10"
+                                    Margin="5"
+                                    Padding="10">
+
+
+                                    <StackPanel Orientation="Horizontal">
+
+
+                                        <Image
+                                            Source="{Binding ImageUrl}"
+                                            Width="70"
+                                            Height="70"
+                                            Margin="0,0,10,0"/>
+
+
+                                        <StackPanel>
+
+                                            <TextBlock
+                                                Text="{Binding Name}"
+                                                Foreground="White"
+                                                FontSize="16"
+                                                FontWeight="Bold"/>
+
+
+                                            <TextBlock
+                                                Text="{Binding TotalEpisodesCount, StringFormat='{} {0} episodios'}"
+                                                Foreground="Gray"/>
+
+                                        </StackPanel>
+
+
+                                    </StackPanel>
+
+
+                                </Border>
+
+
+                            </DataTemplate>
+
+                        </ListBox.ItemTemplate>
+
+
+                    </ListBox>
+
+
+                </StackPanel>
+
+
+            </Border>
+
+
+
+
+
+            <!-- DETALLES -->
+            <Border
+                Grid.Column="1"
+                Background="#181818"
+                CornerRadius="15"
+                Padding="20">
+
+
+                <Grid>
+
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="150"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+
+
+                    <!-- INFO PODCAST -->
+
+                    <StackPanel
+                        Orientation="Horizontal">
+
+
+                        <Image
+                            x:Name="PodcastImage"
+                            Width="130"
+                            Height="130"
+                            Margin="0,0,20,0"/>
+
+
+                        <StackPanel>
+
+
+                            <TextBlock
+                                x:Name="PodcastTitle"
+                                Text="Selecciona un podcast"
+                                Foreground="White"
+                                FontSize="30"
+                                FontWeight="Bold"/>
+
+
+                            <TextBlock
+                                x:Name="PodcastDescription"
+                                Foreground="LightGray"
+                                TextWrapping="Wrap"
+                                Width="500"
+                                Margin="0,10,0,0"/>
+
+
+                        </StackPanel>
+
+
+                    </StackPanel>
+
+
+
+
+                    <!-- EPISODIOS -->
+
+                    <ListBox
+                        Grid.Row="1"
+                        x:Name="EpisodeList"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        SelectionChanged="EpisodeList_SelectionChanged">
+
+
+                        <ListBox.ItemTemplate>
+
+                            <DataTemplate>
+
+
+                                <Border
+                                    Background="#242424"
+                                    CornerRadius="10"
+                                    Margin="5"
+                                    Padding="15">
+
+
+                                    <StackPanel>
+
+
+                                        <TextBlock
+                                            Text="{Binding Name}"
+                                            Foreground="White"
+                                            FontSize="18"
+                                            FontWeight="Bold"/>
+
+
+                                        <TextBlock
+                                            Text="{Binding Description}"
+                                            Foreground="Gray"
+                                            TextWrapping="Wrap"
+                                            MaxHeight="50"/>
+
+
+                                    </StackPanel>
+
+
+                                </Border>
+
+
+                            </DataTemplate>
+
+
+                        </ListBox.ItemTemplate>
+
+
+                    </ListBox>
+
+
+                </Grid>
+
+
+            </Border>
+
+
+        </Grid>
+
+
+
+
+
+
+        <!-- REPRODUCTOR -->
+
+        <Border
             Grid.Row="2"
-            Grid.ColumnSpan="2"
-            Orientation="Vertical"
-            HorizontalAlignment="Center">
+            Background="#181818"
+            CornerRadius="15"
+            Padding="15">
 
-            <TextBlock
-                x:Name="TimeText"
-                Text="00:00 / 00:00"
-                FontSize="18"
-                HorizontalAlignment="Center"
-                Margin="0,0,0,10"/>
 
-            <StackPanel
-                Orientation="Horizontal"
-                HorizontalAlignment="Center">
+            <StackPanel>
 
-                <Button
-                    Content=" -10s"
-                    Width="80"
-                    Margin="5"
-                    />
 
-                <Button
-                    Content="Play"
-                    Width="90"
-                    Margin="5"
-                 />
+                <TextBlock
+                    x:Name="TimeText"
+                    Text="00:00 / 00:00"
+                    Foreground="White"
+                    HorizontalAlignment="Center"/>
 
-                <Button
-                    Content="Pause"
-                    Width="90"
-                    Margin="5"
-                  />
 
-                <Button
-                    Content="Stop"
-                    Width="90"
-                    Margin="5"
-                  />
 
-                <Button
-                    Content="+10s "
-                    Width="80"
-                    Margin="5"
-                 />
+                <StackPanel
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center">
+
+
+                    <Button
+                        Content="-10s"
+                        Width="90"
+                        Margin="5"
+                   />
+
+
+                    <Button
+                        Content="▶ Play"
+                        Width="90"
+                        Margin="5"
+                        Click="Play_Click"
+                      />
+
+
+                    <Button
+                        Content="Pause"
+                        Width="90"
+                        Margin="5"
+                       />
+
+
+                    <Button
+                        Content=" Stop"
+                        Width="90"
+                        Margin="5"
+        />
+
+
+                    <Button
+                        Content="+10s "
+                        Width="90"
+                        Margin="5"
+                        />
+
+
+                </StackPanel>
+
 
             </StackPanel>
 
-        </StackPanel>
+
+        </Border>
+
 
     </Grid>
+
 
 </Window>
