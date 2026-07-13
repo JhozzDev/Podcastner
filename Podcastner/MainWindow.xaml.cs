@@ -72,8 +72,7 @@ public partial class MainWindow : Window
         if (EpisodeList.SelectedItem is Episode episode)
         {
             episodioActual = episode;
-
-    
+            NowPlayingTitle.Text = episode.Name;
         }
     }
 
@@ -81,11 +80,10 @@ public partial class MainWindow : Window
     {
         if (episodioActual == null)
         {
-            MessageBox.Show("Selecciona un episodio.");
+            MessageBox.Show("No hay episodio seleccionado");
             return;
         }
-
-
+      
         player.Open(
             new Uri(episodioActual.AudioUrl)
         );
@@ -105,10 +103,5 @@ public partial class MainWindow : Window
 
             EpisodeList.ItemsSource = podcast.Episodes;
         }
-    }
-
-    private void EpisodeList_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-    {
-
     }
 }

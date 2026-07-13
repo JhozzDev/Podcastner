@@ -25,13 +25,13 @@
         <SolidColorBrush x:Key="TextSecondaryBrush" Color="#B3B3B3"/>
         <SolidColorBrush x:Key="BorderBrush2" Color="#2A2A2A"/>
 
-        <!-- ===================== SCROLLBAR OSCURO ===================== -->
+        <!-- ===================== SCROLLBA==================== -->
         <Style TargetType="ScrollBar">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Width" Value="8"/>
         </Style>
 
-        <!-- ===================== TARJETA DE PODCAST (LISTBOX ITEM) ===================== -->
+        <!-- ===================== TARJETA DE PODCAST ===================== -->
         <Style x:Key="PodcastItemStyle" TargetType="ListBoxItem">
             <Setter Property="Padding" Value="0"/>
             <Setter Property="Margin" Value="0,0,0,8"/>
