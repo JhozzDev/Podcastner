@@ -1,7 +1,5 @@
 
 
-https://github.com/user-attachments/assets/acf7592d-a70e-479b-8f81-86b38b6bff78
-
 
 # Podcastner
 
@@ -46,6 +44,5 @@ Podcastner/
 └── Podcastner.csproj
 ```
 
-## Interfaz Podcast
-<img width="1266" height="773" alt="bandicam 2026-07-12 13-17-57-995" src="https://github.com/user-attachments/assets/f9d3467b-8673-4515-aebc-dce5027d1eba" />
-
+## BETA
+https://github.com/user-attachments/assets/acf7592d-a70e-479b-8f81-86b38b6bff78
