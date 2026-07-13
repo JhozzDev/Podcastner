@@ -1,4 +1,8 @@
 
+
+https://github.com/user-attachments/assets/acf7592d-a70e-479b-8f81-86b38b6bff78
+
+
 # Podcastner
 
 Desktop app en C# con podcasts en variedad de idiomas para acquirir idiomas mendiante tecnicas de shadowing y reforzar listening.
