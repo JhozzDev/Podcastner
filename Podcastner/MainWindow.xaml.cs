@@ -5,20 +5,46 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 
 namespace Podcastner;
 
 public partial class MainWindow : Window
 {
-
     private readonly MediaPlayer player = new();
-    private Episode episodioActual;
+    private readonly DispatcherTimer timer = new();
+
+    private Episode episodioActual = new();
+    private bool usuarioMoviendoBarra = false;
+    
+    
+    
     public MainWindow()
     {
         InitializeComponent();
 
+        timer.Interval = TimeSpan.FromMilliseconds(300);
+        timer.Tick += Timer_Tick;
+
         CargarPodcasts();
     }
+
+
+    private void Timer_Tick(object? sender, EventArgs e)
+    {
+        if (!player.NaturalDuration.HasTimeSpan)
+            return;
+
+        if (!usuarioMoviendoBarra)
+        {
+            AudioSlider.Maximum = player.NaturalDuration.TimeSpan.TotalSeconds;
+            AudioSlider.Value = player.Position.TotalSeconds;
+
+            TiempoActual.Text = player.Position.ToString(@"mm\:ss");
+            TiempoTotal.Text = player.NaturalDuration.TimeSpan.ToString(@"mm\:ss");
+        }
+    }
+
 
     private async void CargarPodcasts()
     {
@@ -83,12 +109,42 @@ public partial class MainWindow : Window
             MessageBox.Show("No hay episodio seleccionado");
             return;
         }
-      
-        player.Open(
-            new Uri(episodioActual.AudioUrl)
-        );
+
+        player.Open(new Uri(episodioActual.AudioUrl));
+
+        player.MediaOpened += Player_MediaOpened;
 
         player.Play();
+    }
+
+    private void AudioSlider_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+    {
+        usuarioMoviendoBarra = true;
+    }
+
+    private void AudioSlider_PreviewMouseUp(object sender, MouseButtonEventArgs e)
+    {
+        usuarioMoviendoBarra = false;
+        player.Position = TimeSpan.FromSeconds(AudioSlider.Value);
+    }
+
+    private void AudioSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+    {
+        if (usuarioMoviendoBarra)
+        {
+           
+            player.Position = TimeSpan.FromSeconds(AudioSlider.Value);
+        }
+    }
+    private void Player_MediaOpened(object? sender, EventArgs e)
+    {
+        timer.Start();
+    }
+
+    private void Player_MediaEnded(object? sender, EventArgs e)
+    {
+        timer.Stop();
+        AudioSlider.Value = 0;
     }
 
     private void PodcastList_SelectionChanged(object sender, RoutedEventArgs e)
