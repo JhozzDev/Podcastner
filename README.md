@@ -3,7 +3,8 @@
 
 # Podcastner
 
-Desktop app en C# con podcasts en variedad de idiomas para acquirir idiomas mendiante tecnicas de shadowing y reforzar listening.
+Desktop app en C# con podcasts en variedad de idiomas para acquirir idiomas mendiante tecnicas de shadowing y reforzar listening. 
+A futuro tendra su propia anki local para reestudiar las palabras nuevas que guardaste
 
 ## Contiene
 
@@ -17,7 +18,8 @@ Desktop app en C# con podcasts en variedad de idiomas para acquirir idiomas mend
 - .NET (WPF)
 - Taddy Podcast(API)
 - C# (.NET)
-- 
+
+  
 ##  Estructura del proyecto
 
 ```text
@@ -33,7 +35,7 @@ Podcastner/
 │   └── PodcastService.cs
 │
 ├── Resources/
-│   └── Audio/
+│   └── Audio/ (INACTIVA DEBIDO A LA API)
 │
 ├── MainWindow.xaml
 ├── MainWindow.xaml.cs
