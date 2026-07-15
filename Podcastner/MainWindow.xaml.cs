@@ -26,7 +26,6 @@ public partial class MainWindow : Window
         timer.Interval = TimeSpan.FromMilliseconds(300);
         timer.Tick += Timer_Tick;
 
-        CargarPodcasts();
     }
 
 
@@ -46,14 +45,14 @@ public partial class MainWindow : Window
     }
 
 
-    private async void CargarPodcasts()
+    private async void CargarPodcasts(object sender, RoutedEventArgs e)
     {
         try
         {
             PodcastService service = new();
 
             PodcastSearchResponse respuesta =
-                await service.BuscarPodcasts("english");
+                await service.BuscarPodcasts(SearchBox.Text);
 
 
             if (respuesta == null)

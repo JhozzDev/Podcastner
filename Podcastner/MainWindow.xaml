@@ -116,7 +116,7 @@
             </Setter>
         </Style>
 
-       
+
 
         <!-- ===================== CAJA DE BÚSQUEDA ===================== -->
         <Style x:Key="SearchBoxStyle" TargetType="TextBox">
@@ -130,12 +130,17 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="TextBox">
                         <Border Background="{TemplateBinding Background}" CornerRadius="18">
-                            <ScrollViewer x:Name="PART_ContentHost" Margin="{TemplateBinding Padding}" VerticalAlignment="Center"/>
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                  Margin="{TemplateBinding Padding}"
+                                  VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
+
+        
+
 
         <!-- ===================== SLIDER DE PROGRESO ===================== -->
         <Style x:Key="ProgressSliderStyle" TargetType="Slider">
@@ -222,6 +227,12 @@
                 HorizontalAlignment="Right"
                 VerticalAlignment="Center"
                 Tag="Buscar podcast o episodio..."/>
+
+            <Button x:Name="SearchBtn"
+        Style="{StaticResource PlayerButtonStyle}"
+        Click="CargarPodcasts"
+        Content="🔍"
+        ToolTip="Buscar"/>
         </Grid>
 
 
