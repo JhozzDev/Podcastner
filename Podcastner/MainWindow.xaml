@@ -12,8 +12,8 @@
         >
 
     <Window.Resources>
-        
-        
+
+
 
         <!-- ===================== PALETA ===================== -->
         <SolidColorBrush x:Key="AccentBrush" Color="#1DB954"/>
@@ -138,7 +138,7 @@
             </Setter>
         </Style>
 
-        
+
 
 
         <!-- ===================== SLIDER DE PROGRESO ===================== -->
@@ -189,7 +189,7 @@
         </Style>
 
     </Window.Resources>
-   
+
 
     <Grid Margin="24">
 
@@ -208,7 +208,7 @@
             </Grid.ColumnDefinitions>
 
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                <TextBlock Text="🎧" FontSize="30" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                <TextBlock Text="🎧" FontSize="30" Margin="0,0,10,0" VerticalAlignment="Center" Foreground="White"/>
                 <TextBlock
                     Text="Podcastner"
                     FontSize="28"
@@ -218,7 +218,13 @@
             </StackPanel>
 
 
- 
+            <Button x:Name="SearchBtn"
+        Style="{StaticResource PlayerButtonStyle}"
+        Click="CargarPodcasts"
+                                    HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+        Content="🔍"
+        ToolTip="Buscar" Grid.Column="1" Margin="0,14,325,0"/>
             <TextBox
                 x:Name="SearchBox"
                 Grid.Column="1"
@@ -231,13 +237,7 @@
                 Tag="Buscar podcast o episodio..."
                 />
 
-          <Button x:Name="SearchBtn"
-        Style="{StaticResource PlayerButtonStyle}"
-        Click="CargarPodcasts"
-                                    HorizontalAlignment="Left"
-                VerticalAlignment="Center"
-        Content="🔍"
-        ToolTip="Buscar"/>
+
         </Grid>
 
 
@@ -263,14 +263,14 @@
   FontWeight="SemiBold"/>
                 </DockPanel>
             </Border>
-       
+
 
             <!-- ===================== PANEL PODCASTS ===================== -->
             <Border
                 Grid.Column="0"
                 Background="{StaticResource PanelBrush}"
                 CornerRadius="15"
-                Padding="16">
+                Padding="16" Margin="0,0,30,0">
 
                 <DockPanel>
 
@@ -327,10 +327,9 @@
 
             <!-- ===================== PANEL DETALLES ===================== -->
             <Border
-                Grid.Column="2"
                 Background="{StaticResource PanelBrush}"
                 CornerRadius="15"
-                Padding="24">
+                Padding="24" Grid.ColumnSpan="3" Margin="326,0,0,0">
 
                 <Grid>
 
@@ -349,22 +348,35 @@
 
                         <StackPanel VerticalAlignment="Center">
 
-                            <TextBlock
-                                x:Name="PodcastTitle"
-                                Text="Selecciona un podcast"
-                                Foreground="{StaticResource TextPrimaryBrush}"
-                                FontSize="28"
-                                FontWeight="Bold"
-                                TextWrapping="Wrap"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+
+                                <TextBlock
+            x:Name="PodcastTitle"
+            Grid.Column="0"
+            Text="Selecciona un podcast"
+            Foreground="{StaticResource TextPrimaryBrush}"
+            FontSize="28"
+            FontWeight="Bold"
+            TextWrapping="Wrap"
+            VerticalAlignment="Center"/>
+
+
+
+
+                            </Grid>
 
                             <TextBlock
-                                x:Name="PodcastDescription"
-                                Foreground="{StaticResource TextSecondaryBrush}"
-                                FontSize="13"
-                                TextWrapping="Wrap"
-                                Margin="0,8,0,0"
-                                MaxHeight="70"/>
-
+        x:Name="PodcastDescription"
+        Foreground="{StaticResource TextSecondaryBrush}"
+        FontSize="13"
+        TextWrapping="Wrap"
+        Margin="0,8,0,0"
+        MaxHeight="70"/>
                         </StackPanel>
 
                     </StackPanel>
@@ -376,7 +388,7 @@
                                Foreground="{StaticResource TextPrimaryBrush}"
                                FontSize="18"
                                FontWeight="Bold"
-                               Margin="0,26,0,0"/>
+                               Margin="10,30,-10,1"/>
 
                     <!-- EPISODIOS -->
                     <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto" Margin="0,10,0,0">
@@ -395,12 +407,6 @@
                                             <ColumnDefinition Width="Auto"/>
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
-
-                                        <Border Width="38" Height="38" CornerRadius="19"
-                                                Background="#1DB954" Margin="0,0,12,0" VerticalAlignment="Top">
-                                            <TextBlock Text="▶" Foreground="Black" FontSize="12"
-                                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Border>
 
                                         <StackPanel Grid.Column="1">
                                             <TextBlock
@@ -422,15 +428,16 @@
 
                         </ListBox>
                     </ScrollViewer>
+                   
 
                 </Grid>
 
             </Border>
 
         </Grid>
-        
-        
-        
+
+
+
 
 
         <!-- ===================== REPRODUCTOR ===================== -->
@@ -464,7 +471,7 @@
                 <!-- CONTROLES + PROGRESO -->
                 <StackPanel Grid.Column="1" VerticalAlignment="Center">
 
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,8">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,8" Height="65">
 
                         <Button x:Name="RewindButton" Style="{StaticResource PlayerButtonStyle}" Content="⏪" ToolTip="Retroceder 10s"/>
 
@@ -487,8 +494,8 @@
 
                         <TextBlock x:Name="TiempoActual" Text="00:00" Foreground="{StaticResource TextSecondaryBrush}" FontSize="11" VerticalAlignment="Center" Margin="0,0,10,0"/>
 
-                      
-                    <Slider    x:Name="AudioSlider" 
+
+                        <Slider    x:Name="AudioSlider" 
 ValueChanged="AudioSlider_ValueChanged"
 PreviewMouseDown="AudioSlider_PreviewMouseDown"
 PreviewMouseUp="AudioSlider_PreviewMouseUp" Grid.Column="1" Style="{StaticResource ProgressSliderStyle}" Minimum="0" Maximum="100" Value="0"/>
@@ -498,7 +505,7 @@ PreviewMouseUp="AudioSlider_PreviewMouseUp" Grid.Column="1" Style="{StaticResour
 
                 </StackPanel>
 
-            
+
 
                 <!-- VOLUMEN -->
                 <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">

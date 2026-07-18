@@ -102,11 +102,7 @@ public partial class MainWindow : Window
             episodioActual = episode;
             NowPlayingTitle.Text = episode.Name;
         
-            if (episodioActual.Subtitle == null)
-            {
-                PodcastDescription.Text = "No hay subtitulos";
-            }
-            subtitles.Text = episode.Subtitle;
+         
         }
     }
 
