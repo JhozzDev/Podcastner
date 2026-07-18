@@ -85,8 +85,11 @@ public partial class MainWindow : Window
 
             PodcastList.ItemsSource =
                 respuesta.Data.SearchForTerm.PodcastSeries;
+      
 
         }
+
+       
         catch (Exception ex)
         {
             MessageBox.Show(ex.Message);
@@ -98,6 +101,12 @@ public partial class MainWindow : Window
         {
             episodioActual = episode;
             NowPlayingTitle.Text = episode.Name;
+        
+            if (episodioActual.Subtitle == null)
+            {
+                PodcastDescription.Text = "No hay subtitulos";
+            }
+            subtitles.Text = episode.Subtitle;
         }
     }
 
@@ -157,6 +166,9 @@ public partial class MainWindow : Window
             );
 
             EpisodeList.ItemsSource = podcast.Episodes;
+            NowPlayingImage.Source = new BitmapImage(
+                new Uri(podcast.ImageUrl)
+            );
         }
     }
 }

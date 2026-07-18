@@ -13,4 +13,7 @@ public class Episode
 
     [JsonPropertyName("audioUrl")]
     public string AudioUrl { get; set; }
+
+    [JsonPropertyName("subtitle")]
+    public string Subtitle { get; set; }
 }

@@ -44,6 +44,8 @@ public class PodcastService
         name
         description
         audioUrl
+        subtitle
+   
       }}
     }}
   }}
@@ -69,8 +71,8 @@ public class PodcastService
         );
 
 
-        string json = await response.Content.ReadAsStringAsync();
-
+        var json = await response.Content.ReadAsStringAsync();
+        MessageBox.Show(json);
 
         PodcastSearchResponse resultado =
             JsonSerializer.Deserialize<PodcastSearchResponse>(json)!;
