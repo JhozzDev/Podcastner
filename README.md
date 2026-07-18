@@ -10,7 +10,7 @@ A futuro tendra su propia anki local para reestudiar las palabras nuevas que gua
 
 - +100 Podcast
 - Subtitulos
-- Busqueda con TaddyAPI
+- Barra de busqueda conectada a TaddyAPI
 - Guardado de podcast
 - Dictionario de palabras desconocidas
 
