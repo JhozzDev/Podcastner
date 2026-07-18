@@ -123,8 +123,8 @@
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="CaretBrush" Value="White"/>
             <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Padding" Value="12,8"/>
-            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="3"/>
+            <Setter Property="FontSize" Value="15"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="TextBox">
@@ -217,9 +217,12 @@
                     VerticalAlignment="Center"/>
             </StackPanel>
 
+
+ 
             <TextBox
                 x:Name="SearchBox"
                 Grid.Column="1"
+                Foreground="White"
                 Style="{StaticResource SearchBoxStyle}"
                 Width="320"
                 Height="36"
