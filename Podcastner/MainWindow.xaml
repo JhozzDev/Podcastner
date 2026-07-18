@@ -9,7 +9,7 @@
         WindowStartupLocation="CenterScreen"
         Background="#0D0D0D"
         FontFamily="Segoe UI"
-        >
+      >
 
     <Window.Resources>
 
@@ -218,23 +218,25 @@
             </StackPanel>
 
 
+            <Button
+x:Name="F2"
+Style="{StaticResource PlayerButtonStyle}"
+                Content="♡"
+Click="Favoritos_Click" Grid.Column="1" Margin="0,14,395,10" FontSize="36" Width="46" HorizontalAlignment="Right"/>
+
+
             <Button x:Name="SearchBtn"
         Style="{StaticResource PlayerButtonStyle}"
         Click="CargarPodcasts"
                                     HorizontalAlignment="Right"
-                VerticalAlignment="Top"
         Content="🔍"
-        ToolTip="Buscar" Grid.Column="1" Margin="0,14,325,0"/>
+        ToolTip="Buscar" Grid.Column="1" Margin="0,14,334,10" Height="NaN"/>
             <TextBox
                 x:Name="SearchBox"
                 Grid.Column="1"
                 Foreground="White"
                 Style="{StaticResource SearchBoxStyle}"
-                Width="320"
-                Height="36"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Center"
-                Tag="Buscar podcast o episodio..."
+                Tag="Buscar podcast o episodio..." Height="36" VerticalAlignment="Center" HorizontalAlignment="Right" Width="320"
                 />
 
 
@@ -355,28 +357,48 @@
                                 </Grid.ColumnDefinitions>
 
 
+                                <!-- Título del podcast -->
                                 <TextBlock
-            x:Name="PodcastTitle"
-            Grid.Column="0"
-            Text="Selecciona un podcast"
-            Foreground="{StaticResource TextPrimaryBrush}"
-            FontSize="28"
-            FontWeight="Bold"
-            TextWrapping="Wrap"
-            VerticalAlignment="Center"/>
+    x:Name="PodcastTitle"
+    Grid.Column="0"
+    Text="Selecciona un podcast"
+    Foreground="{StaticResource TextPrimaryBrush}"
+    FontSize="28"
+    FontWeight="Bold"
+    TextWrapping="Wrap"
+    VerticalAlignment="Center"/>
 
 
-
+                                <!-- Botón Favorito -->
+                                <Button
+    x:Name="FavoriteButton"
+    Height="45"
+    Margin="44,58,0,-58"
+    Background="Transparent"
+    BorderThickness="0"
+    Cursor="Hand"
+    Click="FavoriteButton_Click" HorizontalAlignment="Left" Width="45">
+                                    <TextBlock
+        x:Name="HeartIcon"
+        Text="♡"
+        FontSize="32"
+        Foreground="White"
+        HorizontalAlignment="Left" Height="43"/>
+                                </Button>
 
                             </Grid>
 
+
+                            <!-- Descripción -->
                             <TextBlock
-        x:Name="PodcastDescription"
-        Foreground="{StaticResource TextSecondaryBrush}"
-        FontSize="13"
-        TextWrapping="Wrap"
-        Margin="0,8,0,0"
-        MaxHeight="70"/>
+x:Name="PodcastDescription"
+Foreground="{StaticResource TextSecondaryBrush}"
+FontSize="13"
+TextWrapping="Wrap"
+Margin="0,8,0,0"
+MaxHeight="70"/>
+
+
                         </StackPanel>
 
                     </StackPanel>
@@ -428,7 +450,7 @@
 
                         </ListBox>
                     </ScrollViewer>
-                   
+
 
                 </Grid>
 
@@ -506,7 +528,6 @@ PreviewMouseUp="AudioSlider_PreviewMouseUp" Grid.Column="1" Style="{StaticResour
                 </StackPanel>
 
 
-
                 <!-- VOLUMEN -->
                 <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
                     <TextBlock Text="🔊" Foreground="{StaticResource TextSecondaryBrush}" FontSize="14" Margin="0,0,8,0" VerticalAlignment="Center"/>
@@ -520,5 +541,6 @@ PreviewMouseUp="AudioSlider_PreviewMouseUp" Grid.Column="1" Style="{StaticResour
 
 
     </Grid>
+
 
 </Window>

@@ -1,4 +1,5 @@
-﻿using Podcastner.Models;
+﻿using Podcastner.Data;
+using Podcastner.Models;
 using Podcastner.Services;
 using System.Numerics;
 using System.Windows;
@@ -13,15 +14,17 @@ public partial class MainWindow : Window
 {
     private readonly MediaPlayer player = new();
     private readonly DispatcherTimer timer = new();
-
+    private readonly DatabaseService database = new();
     private Episode episodioActual = new();
     private bool usuarioMoviendoBarra = false;
-    
-    
-    
+    private readonly FavoriteService favoriteService = new();
+
+
+
     public MainWindow()
     {
         InitializeComponent();
+        database.Initialize();
 
         timer.Interval = TimeSpan.FromMilliseconds(300);
         timer.Tick += Timer_Tick;
@@ -29,6 +32,24 @@ public partial class MainWindow : Window
     }
 
 
+    private FavoritesWindow _favoritesWindow;
+
+    private void Favoritos_Click(object sender, RoutedEventArgs e)
+    {
+ 
+        if (_favoritesWindow == null)
+        {
+            _favoritesWindow = new FavoritesWindow();
+            
+            _favoritesWindow.Closed += (s, args) => _favoritesWindow = null;
+            _favoritesWindow.Show();
+        }
+        else
+        {
+         
+            _favoritesWindow.Activate();
+        }
+    }
     private void Timer_Tick(object? sender, EventArgs e)
     {
         if (!player.NaturalDuration.HasTimeSpan)
@@ -44,7 +65,38 @@ public partial class MainWindow : Window
         }
     }
 
+    private void FavoriteButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (PodcastList.SelectedItem is not Podcast podcast)
+            return;
 
+
+        if (favoriteService.Exists(podcast.Uuid))
+        {
+            favoriteService.Remove(podcast.Uuid);
+            HeartIcon.Foreground = Brushes.White;
+        }
+        else
+        {
+            favoriteService.Add(new FavoritePodcast
+            {
+                Uuid = podcast.Uuid,
+                Name = podcast.Name,
+                Description = podcast.Description,
+                ImageUrl = podcast.ImageUrl
+            });
+
+            HeartIcon.Foreground = Brushes.Red;
+        }
+    }
+    private async void Window_Loaded(object sender, RoutedEventArgs e)
+    {
+        WhisperService whisper = new();
+
+        string model = await whisper.DownloadModelAsync();
+
+        MessageBox.Show($"Modelo descargado:\n{model}");
+    }
     private async void CargarPodcasts(object sender, RoutedEventArgs e)
     {
         try
@@ -157,9 +209,11 @@ public partial class MainWindow : Window
         {
             PodcastTitle.Text = podcast.Name;
             PodcastDescription.Text = podcast.Description;
-            PodcastImage.Source = new BitmapImage(
-                new Uri(podcast.ImageUrl)
-            );
+           
+                PodcastImage.Source = new BitmapImage(
+                    new Uri(podcast.ImageUrl)
+                );
+            
 
             EpisodeList.ItemsSource = podcast.Episodes;
             NowPlayingImage.Source = new BitmapImage(
