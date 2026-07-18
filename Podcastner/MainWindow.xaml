@@ -222,7 +222,7 @@
 x:Name="F2"
 Style="{StaticResource PlayerButtonStyle}"
                 Content="♡"
-Click="Favoritos_Click" Grid.Column="1" Margin="0,14,395,10" FontSize="36" Width="46" HorizontalAlignment="Right"/>
+Click="Favoritos_Click" Grid.Column="1" Margin="0,14,385,10" FontSize="36" Width="46" HorizontalAlignment="Right"/>
 
 
             <Button x:Name="SearchBtn"
@@ -370,21 +370,6 @@ Click="Favoritos_Click" Grid.Column="1" Margin="0,14,395,10" FontSize="36" Width
 
 
                                 <!-- Botón Favorito -->
-                                <Button
-    x:Name="FavoriteButton"
-    Height="45"
-    Margin="44,58,0,-58"
-    Background="Transparent"
-    BorderThickness="0"
-    Cursor="Hand"
-    Click="FavoriteButton_Click" HorizontalAlignment="Left" Width="45">
-                                    <TextBlock
-        x:Name="HeartIcon"
-        Text="♡"
-        FontSize="32"
-        Foreground="White"
-        HorizontalAlignment="Left" Height="43"/>
-                                </Button>
 
                             </Grid>
 
@@ -450,6 +435,13 @@ MaxHeight="70"/>
 
                         </ListBox>
                     </ScrollViewer>
+                    <Button
+    x:Name="FavoriteButton"
+    Background="Transparent"
+    BorderThickness="0"
+    Cursor="Hand"
+    Click="FavoriteButton_Click"
+    Content="♡" FontSize="30" Foreground="White" Margin="140,80,0,0" HorizontalAlignment="Left" Width="50"/>
 
 
                 </Grid>
@@ -464,10 +456,10 @@ MaxHeight="70"/>
 
         <!-- ===================== REPRODUCTOR ===================== -->
         <Border
-            Grid.Row="2"
+            Grid.Row="1"
             Background="{StaticResource PanelBrush}"
             CornerRadius="15"
-            Padding="20,12">
+            Padding="20,12" Margin="0,0,0,-10" Grid.RowSpan="2" Height="120" VerticalAlignment="Bottom">
 
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -493,7 +485,15 @@ MaxHeight="70"/>
                 <!-- CONTROLES + PROGRESO -->
                 <StackPanel Grid.Column="1" VerticalAlignment="Center">
 
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,8" Height="65">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,8" Height="65" RenderTransformOrigin="0.5,0.5">
+                        <StackPanel.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform AngleX="2.564"/>
+                                <RotateTransform/>
+                                <TranslateTransform X="-1.455"/>
+                            </TransformGroup>
+                        </StackPanel.RenderTransform>
 
                         <Button x:Name="RewindButton" Style="{StaticResource PlayerButtonStyle}" Content="⏪" ToolTip="Retroceder 10s"/>
 

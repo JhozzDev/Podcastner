@@ -74,7 +74,7 @@ public partial class MainWindow : Window
         if (favoriteService.Exists(podcast.Uuid))
         {
             favoriteService.Remove(podcast.Uuid);
-            HeartIcon.Foreground = Brushes.White;
+            FavoriteButton.Foreground = Brushes.White;
         }
         else
         {
@@ -86,7 +86,7 @@ public partial class MainWindow : Window
                 ImageUrl = podcast.ImageUrl
             });
 
-            HeartIcon.Foreground = Brushes.Red;
+            FavoriteButton.Foreground = Brushes.Red;
         }
     }
     private async void Window_Loaded(object sender, RoutedEventArgs e)
