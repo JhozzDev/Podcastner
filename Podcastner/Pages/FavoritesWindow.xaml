@@ -22,11 +22,6 @@
         <SolidColorBrush x:Key="TextSecondaryBrush" Color="#B3B3B3"/>
         <SolidColorBrush x:Key="BorderBrush2" Color="#2A2A2A"/>
 
-        <!-- ===================== SCROLLBA==================== -->
-        <Style TargetType="ScrollBar">
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Width" Value="8"/>
-        </Style>
 
         <!-- ===================== TARJETA DE PODCAST ===================== -->
         <Style x:Key="PodcastItemStyle" TargetType="ListBoxItem">
@@ -58,9 +53,7 @@
             </Setter>
         </Style>
 
-        <!-- ===================== TARJETA DE EPISODIO ===================== -->
-        <Style x:Key="EpisodeItemStyle" TargetType="ListBoxItem" BasedOn="{StaticResource PodcastItemStyle}"/>
-
+ 
         <!-- ===================== BOTONES CIRCULARES DEL REPRODUCTOR ===================== -->
         <Style x:Key="PlayerButtonStyle" TargetType="Button">
             <Setter Property="Width" Value="46"/>
@@ -71,7 +64,6 @@
             <Setter Property="FontSize" Value="16"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
             <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
@@ -88,101 +80,7 @@
             </Setter>
         </Style>
 
-        <!-- Botón principal Play/Pause, más grande y verde -->
-        <Style x:Key="PlayButtonStyle" TargetType="Button" BasedOn="{StaticResource PlayerButtonStyle}">
-            <Setter Property="Width" Value="60"/>
-            <Setter Property="Height" Value="60"/>
-            <Setter Property="Background" Value="{StaticResource AccentBrush}"/>
-            <Setter Property="FontSize" Value="20"/>
-            <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border x:Name="Bg" Background="{TemplateBinding Background}" CornerRadius="30">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="Bg" Property="Background" Value="{StaticResource AccentHoverBrush}"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
 
-
-
-        <!-- ===================== CAJA DE BÚSQUEDA ===================== -->
-        <Style x:Key="SearchBoxStyle" TargetType="TextBox">
-            <Setter Property="Background" Value="#242424"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="CaretBrush" Value="White"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Padding" Value="3"/>
-            <Setter Property="FontSize" Value="15"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="TextBox">
-                        <Border Background="{TemplateBinding Background}" CornerRadius="18">
-                            <ScrollViewer x:Name="PART_ContentHost"
-                                Margin="{TemplateBinding Padding}"
-                                VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-
-
-
-        <!-- ===================== SLIDER DE PROGRESO ===================== -->
-        <Style x:Key="ProgressSliderStyle" TargetType="Slider">
-            <Setter Property="Height" Value="20"/>
-            <Setter Property="Foreground" Value="{StaticResource AccentBrush}"/>
-            <Setter Property="Background" Value="{StaticResource BorderBrush2}"/>
-            <Setter Property="IsMoveToPointEnabled" Value="True"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Slider">
-                        <Grid VerticalAlignment="Center">
-                            <Border x:Name="TrackBg"
-                                  Height="4"
-                                  CornerRadius="2"
-                                  Background="{TemplateBinding Background}"/>
-                            <Track x:Name="PART_Track">
-                                <Track.DecreaseRepeatButton>
-                                    <RepeatButton Command="Slider.DecreaseLarge">
-                                        <RepeatButton.Template>
-                                            <ControlTemplate>
-                                                <Border Height="4" CornerRadius="2"
-                                                      Background="{TemplateBinding Foreground}"/>
-                                            </ControlTemplate>
-                                        </RepeatButton.Template>
-                                        <RepeatButton.Foreground>
-                                            <Binding RelativeSource="{RelativeSource AncestorType=Slider}" Path="Foreground"/>
-                                        </RepeatButton.Foreground>
-                                    </RepeatButton>
-                                </Track.DecreaseRepeatButton>
-                                <Track.IncreaseRepeatButton>
-                                    <RepeatButton Command="Slider.IncreaseLarge" Background="Transparent" BorderThickness="0"/>
-                                </Track.IncreaseRepeatButton>
-                                <Track.Thumb>
-                                    <Thumb Width="14" Height="14">
-                                        <Thumb.Template>
-                                            <ControlTemplate TargetType="Thumb">
-                                                <Ellipse Fill="{StaticResource AccentBrush}"/>
-                                            </ControlTemplate>
-                                        </Thumb.Template>
-                                    </Thumb>
-                                </Track.Thumb>
-                            </Track>
-                        </Grid>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
 
     </Window.Resources>
 
@@ -210,7 +108,7 @@
                             Margin="15,0,0,0"
                             VerticalAlignment="Center"/>
 
-                        <Button Click="Remove_list" Style="{StaticResource PlayerButtonStyle}"/>
+                        <Button Click="Remove" Style="{StaticResource PlayerButtonStyle}" Content="X"/>
 
                     </StackPanel>
 

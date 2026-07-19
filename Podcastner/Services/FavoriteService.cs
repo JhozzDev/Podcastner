@@ -11,6 +11,10 @@ public class FavoriteService
 
     public void Add(FavoritePodcast podcast)
     {
+
+        if (string.IsNullOrWhiteSpace(podcast.Uuid))
+            return;
+
         using var connection = new SqliteConnection(connectionString);
 
         connection.Open();

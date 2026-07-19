@@ -15,14 +15,16 @@ public partial class FavoritesWindow : Window
 
         FavoritesList.ItemsSource = favoriteService.GetFavorites();
     }
-
-    private void Remove_list(object sender, RoutedEventArgs e)
+    private void Remove(object sender, RoutedEventArgs e)
     {
-        if (FavoritesList.SelectedItem is not FavoritePodcast Fvp)
+        if (FavoritesList.SelectedItem is not FavoritePodcast fvp)
             return;
-         
-        favoriteService.Remove(Fvp.Uuid);
 
+        MessageBox.Show(fvp.Uuid);
 
+        favoriteService.Remove(fvp.Uuid);
+
+        FavoritesList.ItemsSource = null;
+        FavoritesList.ItemsSource = favoriteService.GetFavorites();
     }
 }
