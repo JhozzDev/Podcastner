@@ -1,7 +1,7 @@
 ﻿using Podcastner.Data;
 using Podcastner.Models;
+using Podcastner.Pages;
 using Podcastner.Services;
-using System.Numerics;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -33,6 +33,23 @@ public partial class MainWindow : Window
 
 
     private FavoritesWindow _favoritesWindow;
+    private DictionaryWindow _dictionaryWindow;
+    private void Dictionary_Click(object sender, RoutedEventArgs e)
+    {
+
+        if (_dictionaryWindow == null)
+        {
+            _dictionaryWindow = new DictionaryWindow();
+
+            _dictionaryWindow.Closed += (s, args) => _dictionaryWindow = null;
+            _dictionaryWindow.Show();
+        }
+        else
+        {
+
+            _dictionaryWindow.Activate();
+        }
+    }
 
     private void Favoritos_Click(object sender, RoutedEventArgs e)
     {
@@ -221,4 +238,10 @@ public partial class MainWindow : Window
             );
         }
     }
+    
+    private void VolumeSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+    {
+        player.Volume = VolumeSlider.Value / 100.0;
+    }
 }
+
