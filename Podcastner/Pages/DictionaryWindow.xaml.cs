@@ -1,8 +1,7 @@
 ﻿using Podcastner.Services;
 using System.Windows;
 
-namespace Podcastner.Pages
-{
+namespace Podcastner { 
 
     public partial class DictionaryWindow : Window
     {
