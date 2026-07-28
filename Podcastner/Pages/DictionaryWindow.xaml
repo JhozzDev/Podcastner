@@ -35,11 +35,45 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="TextBox">
-                        <Border Background="{TemplateBinding Background}" CornerRadius="18">
-                            <ScrollViewer x:Name="PART_ContentHost"
-                                  Margin="{TemplateBinding Padding}"
-                                  VerticalAlignment="Center"/>
-                        </Border>
+                        <Grid>
+
+                            <Border Background="{TemplateBinding Background}"
+                CornerRadius="18">
+
+                                <ScrollViewer
+                x:Name="PART_ContentHost"
+                Margin="{TemplateBinding Padding}"/>
+
+                            </Border>
+
+                            <TextBlock
+            x:Name="Placeholder"
+            Text="{TemplateBinding Tag}"
+            Foreground="Gray"
+            Margin="12,0,0,0"
+            VerticalAlignment="Center"
+            IsHitTestVisible="False"
+            Visibility="Collapsed"/>
+
+                        </Grid>
+
+                        <ControlTemplate.Triggers>
+
+                            <Trigger Property="Text" Value="">
+                                <Setter TargetName="Placeholder"
+                    Property="Visibility"
+                    Value="Visible"/>
+                            </Trigger>
+
+                            <Trigger Property="IsKeyboardFocused"
+                 Value="True">
+                                <Setter TargetName="Placeholder"
+                    Property="Visibility"
+                    Value="Collapsed"/>
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -84,13 +118,14 @@
 
 
         <StackPanel Grid.Row="0"
-                Orientation="Horizontal" Margin="0,0,0,494" Grid.RowSpan="3">
+                Orientation="Horizontal" Grid.RowSpan="3" HorizontalAlignment="Left" Width="870" Height="93" VerticalAlignment="Top">
 
             <TextBox
             x:Name="WordBox"
             Width="250"
             Height="40"
-            Style="{StaticResource SearchBoxStyle}"/>
+            Style="{StaticResource SearchBoxStyle}"
+                Tag="Buscar una palabra..."/>
 
             <Button
             Content="Buscar"

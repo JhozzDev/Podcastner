@@ -26,12 +26,61 @@
         <SolidColorBrush x:Key="TextSecondaryBrush" Color="#B3B3B3"/>
         <SolidColorBrush x:Key="BorderBrush2" Color="#2A2A2A"/>
 
-        <!-- ===================== SCROLLBA==================== -->
         <Style TargetType="ScrollBar">
-            <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Width" Value="8"/>
-        </Style>
+            <Setter Property="Background" Value="Transparent"/>
 
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ScrollBar">
+                        <Grid Background="Transparent">
+
+                            <Track x:Name="PART_Track">
+
+                                <Track.DecreaseRepeatButton>
+                                    <RepeatButton
+                                Command="ScrollBar.LineUpCommand"
+                                Background="Transparent"
+                                BorderThickness="0"/>
+                                </Track.DecreaseRepeatButton>
+
+                                <Track.Thumb>
+                                    <Thumb Width="8">
+                                        <Thumb.Template>
+                                            <ControlTemplate TargetType="Thumb">
+                                                <Border
+                                            Background="#5A5A5A"
+                                            CornerRadius="4"/>
+                                            </ControlTemplate>
+                                        </Thumb.Template>
+                                    </Thumb>
+                                </Track.Thumb>
+
+                                <Track.IncreaseRepeatButton>
+                                    <RepeatButton
+                                Command="ScrollBar.LineDownCommand"
+                                Background="Transparent"
+                                BorderThickness="0"/>
+                                </Track.IncreaseRepeatButton>
+
+                            </Track>
+
+                        </Grid>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger SourceName="PART_Track"
+                             Property="IsMouseOver"
+                             Value="True">
+                                <Setter TargetName="PART_Track"
+                                Property="Opacity"
+                                Value="1"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <!-- ===================== TARJETA DE PODCAST ===================== -->
         <Style x:Key="PodcastItemStyle" TargetType="ListBoxItem">
             <Setter Property="Padding" Value="0"/>
@@ -128,11 +177,45 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="TextBox">
-                        <Border Background="{TemplateBinding Background}" CornerRadius="18">
-                            <ScrollViewer x:Name="PART_ContentHost"
-                                  Margin="{TemplateBinding Padding}"
-                                  VerticalAlignment="Center"/>
-                        </Border>
+                        <Grid>
+
+                            <Border Background="{TemplateBinding Background}"
+                CornerRadius="18">
+
+                                <ScrollViewer
+                x:Name="PART_ContentHost"
+                Margin="{TemplateBinding Padding}"/>
+
+                            </Border>
+
+                            <TextBlock
+            x:Name="Placeholder"
+            Text="{TemplateBinding Tag}"
+            Foreground="Gray"
+            Margin="12,0,0,0"
+            VerticalAlignment="Center"
+            IsHitTestVisible="False"
+            Visibility="Collapsed"/>
+
+                        </Grid>
+
+                        <ControlTemplate.Triggers>
+
+                            <Trigger Property="Text" Value="">
+                                <Setter TargetName="Placeholder"
+                    Property="Visibility"
+                    Value="Visible"/>
+                            </Trigger>
+
+                            <Trigger Property="IsKeyboardFocused"
+                 Value="True">
+                                <Setter TargetName="Placeholder"
+                    Property="Visibility"
+                    Value="Collapsed"/>
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -230,14 +313,14 @@ Click="Favoritos_Click" Grid.Column="1" Margin="0,14,385,10" FontSize="36" Width
 x:Name="Dictionary"
 Style="{StaticResource PlayerButtonStyle}"
                 Content="D"
-Click="Dictionary_Click" Grid.Column="1" Margin="0,14,436,10" FontSize="36" Width="46" HorizontalAlignment="Right"/>
+Click="Dictionary_Click" Grid.Column="1" Margin="0,14,436,10" FontSize="24" Width="46" HorizontalAlignment="Right"/>
 
             <Button x:Name="SearchBtn"
         Style="{StaticResource PlayerButtonStyle}"
         Click="CargarPodcasts"
                                     HorizontalAlignment="Right"
         Content="🔍"
-        ToolTip="Buscar" Grid.Column="1" Margin="0,14,334,10" Height="NaN"/>
+        ToolTip="Buscar" Grid.Column="1" Margin="0,14,334,10" Height="NaN" />
             <TextBox
                 x:Name="SearchBox"
                 Grid.Column="1"

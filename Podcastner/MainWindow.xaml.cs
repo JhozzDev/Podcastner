@@ -1,6 +1,5 @@
 ﻿using Podcastner.Data;
 using Podcastner.Models;
-using Podcastner.Pages;
 using Podcastner.Services;
 using System.Windows;
 using System.Windows.Input;
