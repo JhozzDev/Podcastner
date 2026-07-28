@@ -1,5 +1,6 @@
 ﻿using Podcastner.Data;
 using Podcastner.Models;
+using Podcastner.Pages;
 using Podcastner.Services;
 using System.Windows;
 using System.Windows.Input;
@@ -33,6 +34,7 @@ public partial class MainWindow : Window
 
     private FavoritesWindow _favoritesWindow;
     private DictionaryWindow _dictionaryWindow;
+    private SaveWords _saveWordsWindow;
     private void Dictionary_Click(object sender, RoutedEventArgs e)
     {
 
@@ -50,6 +52,22 @@ public partial class MainWindow : Window
         }
     }
 
+    private void Words_Click(object sender, RoutedEventArgs e)
+    {
+
+        if (_saveWordsWindow == null)
+        {
+            _saveWordsWindow = new SaveWords();
+
+            _saveWordsWindow.Closed += (s, args) => _saveWordsWindow = null;
+            _saveWordsWindow.Show();
+        }
+        else
+        {
+
+            _saveWordsWindow.Activate();
+        }
+    }
     private void Favoritos_Click(object sender, RoutedEventArgs e)
     {
  

@@ -315,6 +315,12 @@ Style="{StaticResource PlayerButtonStyle}"
                 Content="D"
 Click="Dictionary_Click" Grid.Column="1" Margin="0,14,436,10" FontSize="24" Width="46" HorizontalAlignment="Right"/>
 
+            <Button
+x:Name="Words"
+Style="{StaticResource PlayerButtonStyle}"
+                Content="W"
+Click="Words_Click" Grid.Column="1" Margin="0,14,487,10" FontSize="24" Width="46" HorizontalAlignment="Right"/>
+
             <Button x:Name="SearchBtn"
         Style="{StaticResource PlayerButtonStyle}"
         Click="CargarPodcasts"

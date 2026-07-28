@@ -1,4 +1,5 @@
-﻿using Podcastner.Services;
+﻿using Podcastner.Models;
+using Podcastner.Services;
 using System.Text;
 using System.Windows;
 
@@ -12,6 +13,7 @@ namespace Podcastner
             InitializeComponent();
         }
 
+ 
         private async void BuscarPalabra_Click(object sender, RoutedEventArgs e)
         {
             DictionaryService service = new();
@@ -45,6 +47,18 @@ namespace Podcastner
                 sb.AppendLine();
             }
 
+
+            SavesWord serviceWord = new();
+            SavedWord insert = new()
+            {
+                Word = palabra.Word,
+                Phonetic = palabra.Phonetic,
+                PartOfSpeech = palabra.Meanings[0].PartOfSpeech,
+                Definition = palabra.Meanings[0].Definitions[0].Definition,
+                Example = palabra.Meanings[0].Definitions[0].Example
+            };
+
+            serviceWord.AddWord(insert);
             DictionaryResult.Text = sb.ToString();
         }
     }
