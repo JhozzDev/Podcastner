@@ -1,23 +1,32 @@
-﻿
-using Microsoft.Data.Sqlite;
-using Podcastner.Services;
+﻿using Microsoft.Data.Sqlite;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 
-
-namespace Podcastner.Pages
+namespace Podcastner
 {
-
-    public class SavesWord
+    /// <summary>
+    /// Lógica de interacción para SavedWordsWindow.xaml
+    /// </summary>
+    public partial class SavedWordsWindow : Window
     {
         private readonly string connectionString =
-            "Data Source=podcastner.db";
+           "Data Source=podcastner.db";
 
-
-        public SavesWord()
+        public SavedWordsWindow()
         {
-            InitializeDatabase();
+            InitializeComponent();
         }
-
 
         private void InitializeDatabase()
         {
@@ -43,4 +52,6 @@ namespace Podcastner.Pages
             command.ExecuteNonQuery();
         }
     }
-    }
+}
+
+    
