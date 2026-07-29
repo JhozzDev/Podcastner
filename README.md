@@ -24,13 +24,29 @@ A futuro tendra su propia anki local para reestudiar las palabras nuevas que gua
 ```text
 Podcastner/
 │
+├── Data/
+│   ├── DataService.cs
+│   
 ├── Models/
 │   ├── Podcast.cs
+│   ├── Episode.cs
+│   ├── DictionaryResponse.cs
+│   ├── Dictionary.cs
+│   ├── Ankis.cs
 │   ├── Episode.cs
 │   ├── EpisodeResponse.cs
 │   └── PodcastSearchResponse.cs
 │
+├── Pages/
+│   ├── DictionaryWindow
+│   ├── FavoritesWindow
+│   ├── SaveWords
+│   
 ├── Services/
+│   ├── Episode.cs
+│   ├── WhisperService.cs
+│   ├── DictionaryService.cs
+│   ├── SavedWords.cs
 │   └── PodcastService.cs
 │
 ├── Resources/
