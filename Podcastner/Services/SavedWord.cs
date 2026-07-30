@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Podcastner.Services
 {
@@ -53,16 +54,18 @@ namespace Podcastner.Services
             command.Parameters.Clear();
 
             command.Parameters.AddWithValue("$Id", worde.Id);
-            command.Parameters.AddWithValue("$Word", worde.Word);    
+            command.Parameters.AddWithValue("$Word", worde.Word);
             command.Parameters.AddWithValue("$Phonetic", worde.Phonetic);
             command.Parameters.AddWithValue("$PartOfSpeech", worde.PartOfSpeech);
             command.Parameters.AddWithValue("$Definition", worde.Definition);
             command.Parameters.AddWithValue("$Example", worde.Example);
-        
+
 
             command.ExecuteNonQuery();
+
+            MessageBox.Show("Saved", worde.Word);
         }
-    
+
 
         public List<SavedWord> GetWords()
         {
@@ -82,7 +85,6 @@ namespace Podcastner.Services
         FROM SavedWords;
         """;
 
-
             using var reader = command.ExecuteReader();
 
 
@@ -101,4 +103,24 @@ namespace Podcastner.Services
 
             return Words;
 
-        } } }
+        } 
+
+  public void Remove(string word)
+        {
+            using var connection = new SqliteConnection(connectionString);
+
+            connection.Open();
+
+            var command = connection.CreateCommand();
+
+            command.CommandText =
+            """
+        DELETE FROM SavedWords
+        WHERE Word = $word;
+        """;
+
+            command.Parameters.AddWithValue("$word", word);
+
+            command.ExecuteNonQuery();
+        }
+    } }

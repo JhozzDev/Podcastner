@@ -1,17 +1,6 @@
-﻿using Microsoft.Data.Sqlite;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Podcastner.Models;
+using Podcastner.Services;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Podcastner
 {
@@ -20,38 +9,26 @@ namespace Podcastner
     /// </summary>
     public partial class SavedWordsWindow : Window
     {
-        private readonly string connectionString =
-           "Data Source=podcastner.db";
+        private readonly SavesWord WordService = new();
 
         public SavedWordsWindow()
         {
             InitializeComponent();
+            WordsList.ItemsSource = WordService.GetWords();
         }
 
-        private void InitializeDatabase()
+        private void Remove(object sender, RoutedEventArgs e)
         {
-            using var connection = new SqliteConnection(connectionString);
+            if (WordsList.SelectedItem is not SavedWord fvp)
+                return;
 
-            connection.Open();
+            WordService.Remove(fvp.Word);
 
-            var command = connection.CreateCommand();
-
-            command.CommandText =
-            """
-        CREATE TABLE IF NOT EXISTS SavedWords
-        (
-            Id INTEGER PRIMARY KEY AUTOINCREMENT,
-            Word TEXT NOT NULL,
-            Phonetic TEXT,
-            PartOfSpeech TEXT,
-            Definition TEXT,
-            Example TEXT
-        );
-        """;
-
-            command.ExecuteNonQuery();
+            WordsList.ItemsSource = null;
+            WordsList.ItemsSource = WordService.GetWords();
         }
+
+
     }
 }
-
     
