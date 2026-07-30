@@ -6,6 +6,7 @@
         Width="1280"
         MinHeight="600"
         MinWidth="900"
+          Loaded="Window_Loaded"
         WindowStartupLocation="CenterScreen"
         Background="#0D0D0D"
         FontFamily="Segoe UI"
@@ -336,6 +337,7 @@ Click="Words_Click" Grid.Column="1" Margin="0,14,487,10" FontSize="24" Width="46
                 />
 
 
+            <TextBlock x:Name="Whisper"/>
 
         </Grid>
 

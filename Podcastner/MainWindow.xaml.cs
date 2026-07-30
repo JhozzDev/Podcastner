@@ -51,8 +51,10 @@ public partial class MainWindow : Window
         }
     }
 
-    private void Words_Click(object sender, RoutedEventArgs e)
+    async private void Words_Click(object sender, RoutedEventArgs e)
     {
+
+      
 
         if (_saveWordsWindow == null)
         {
@@ -128,7 +130,6 @@ public partial class MainWindow : Window
 
         string model = await whisper.DownloadModelAsync();
 
-        MessageBox.Show($"Modelo descargado:\n{model}");
     }
     private async void CargarPodcasts(object sender, RoutedEventArgs e)
     {
@@ -191,7 +192,7 @@ public partial class MainWindow : Window
         }
     }
 
-    private void Play_Click(object sender, RoutedEventArgs e)
+    async private void Play_Click(object sender, RoutedEventArgs e)
     {
         if (episodioActual == null)
         {
@@ -201,9 +202,30 @@ public partial class MainWindow : Window
 
         player.Open(new Uri(episodioActual.AudioUrl));
 
-        player.MediaOpened += Player_MediaOpened;
-
+        player.MediaOpened += Player_MediaOpened; 
+        
         player.Play();
+
+        WhisperService whisper = new();
+        AudioConverter converter = new();
+
+ 
+        string mp3Path = await whisper.DownloadAudioAsync(episodioActual.AudioUrl);
+
+        MessageBox.Show(mp3Path);
+
+      
+        string wavPath = converter.ConvertMp3ToWav(mp3Path);
+
+        MessageBox.Show(wavPath);
+    
+        string texto = await whisper.TranscribeAsync(wavPath);
+
+        MessageBox.Show(texto);
+
+      
+
+    
     }
 
     private void AudioSlider_PreviewMouseDown(object sender, MouseButtonEventArgs e)
