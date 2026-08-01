@@ -1,5 +1,4 @@
 ﻿using NAudio.Gui;
-using Podcastner.Data;
 using Podcastner.Models;
 using Podcastner.Services;
 using System.Windows;

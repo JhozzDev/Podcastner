@@ -85,7 +85,8 @@
 
     <Grid>
 
-        
+
+
 
         <ListBox x:Name="WordsList"
            Background="Transparent">

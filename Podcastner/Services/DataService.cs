@@ -1,6 +1,6 @@
 ﻿using Microsoft.Data.Sqlite;
 
-namespace Podcastner.Data;
+namespace Podcastner.Services;
 
 public class DatabaseService
 {

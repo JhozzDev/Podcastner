@@ -27,7 +27,7 @@ namespace Podcastner.Views
             WordsList.ItemsSource = WordService.GetWords();
         }
 
-
+  
     }
 }
 

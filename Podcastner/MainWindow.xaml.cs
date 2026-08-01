@@ -36,6 +36,10 @@ public partial class MainWindow : Window
                 case "Words":
                     MainContent.Content = new WordsView();
                     break;
+                case "Favorites":
+                    MainContent.Content = new FavoritesView();
+                    break;
+
                 default:
                     break;
             }

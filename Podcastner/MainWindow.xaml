@@ -64,7 +64,7 @@
         <StackPanel Grid.Column="0"
                 Background="#222">
 
-         
+
 
             <Button 
         x:Name="Podcast"
@@ -87,14 +87,17 @@
         Click="Button_Click"
       />
 
+            <Button x:Name="Favorites"
+        Style="{StaticResource PlayerButtonStyle}"
+        Content="🔍"
+        Click="Button_Click"
+      />
+
         </StackPanel>
-
-
-
         <ContentControl x:Name="MainContent"
                     Grid.Column="1"
                     HorizontalContentAlignment="Stretch"
-                    VerticalContentAlignment="Stretch"/>
+                    VerticalContentAlignment="Stretch" Padding="0,50,0,0"/>
 
     </Grid>
 

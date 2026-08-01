@@ -62,8 +62,8 @@ namespace Podcastner.Services
 
 
             command.ExecuteNonQuery();
-
-            MessageBox.Show("Saved", worde.Word);
+            command.Parameters.Clear();
+      
         }
 
 

@@ -285,31 +285,20 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                <TextBlock Text="🎧" FontSize="30" Margin="0,0,10,0" VerticalAlignment="Center" Foreground="White"/>
-                <TextBlock
-                    Text="Podcastner"
-                    FontSize="28"
-                    FontWeight="Bold"
-                    Foreground="{StaticResource TextPrimaryBrush}"
-                    VerticalAlignment="Center"/>
-            </StackPanel>
 
-
-            
 
             <Button x:Name="SearchBtn"
         Style="{StaticResource PlayerButtonStyle}"
         Click="CargarPodcasts"
-                                    HorizontalAlignment="Right"
+                                    HorizontalAlignment="Left"
         Content="🔍"
-        ToolTip="Buscar" Grid.Column="1" Margin="0,14,334,10" Height="NaN" />
+        ToolTip="Buscar" Grid.Column="1"  Height="40" />
             <TextBox
                 x:Name="SearchBox"
                 Grid.Column="1"
                 Foreground="White"
                 Style="{StaticResource SearchBoxStyle}"
-                Tag="Buscar podcast o episodio..." Height="36" VerticalAlignment="Center" HorizontalAlignment="Right" Width="320"
+                Tag="Buscar podcast o episodio..." Height="36" VerticalAlignment="Center" HorizontalAlignment="Left" Width="320" Margin="56,0,0,0"
                 />
 
 
