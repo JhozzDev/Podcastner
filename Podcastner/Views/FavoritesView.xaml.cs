@@ -1,15 +1,16 @@
 ﻿using Podcastner.Models;
 using Podcastner.Services;
 using System.Windows;
+using System.Windows.Controls;
 
 
-namespace Podcastner;
+namespace Podcastner.Views;
 
-public partial class FavoritesWindow : Window
+public partial class FavoritesView : UserControl
 {
     private readonly FavoriteService favoriteService = new();
 
-    public FavoritesWindow()
+    public FavoritesView()
     {
         InitializeComponent();
 

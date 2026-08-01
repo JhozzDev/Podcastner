@@ -1,10 +1,14 @@
-﻿<Window x:Class="Podcastner.SavedWordsWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="SaveWords" Height="450" Width="450"
-        Background="#181818">
+﻿<UserControl x:Class="Podcastner.Views.WordsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Podcastner.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
 
-    <Window.Resources>
+
+    <UserControl.Resources>
 
 
 
@@ -76,10 +80,13 @@
             </Setter>
         </Style>
 
-    </Window.Resources>
+    </UserControl.Resources>
 
 
     <Grid>
+
+
+
 
         <ListBox x:Name="WordsList"
            Background="Transparent">
@@ -97,7 +104,7 @@
                       Margin="15,0,0,0"
                       VerticalAlignment="Center"/>
 
-                     <Button Click="Remove" Style="{StaticResource PlayerButtonStyle}" Content="X"/>
+                        <Button Click="Remove" Style="{StaticResource PlayerButtonStyle}" Content="X"/>
 
                     </StackPanel>
 
@@ -107,4 +114,4 @@
     </Grid>
 
 
-</Window>
+</UserControl>

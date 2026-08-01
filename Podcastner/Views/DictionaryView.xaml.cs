@@ -2,18 +2,19 @@
 using Podcastner.Services;
 using System.Text;
 using System.Windows;
+using System.Windows.Controls;
 
-namespace Podcastner
+namespace Podcastner.Views
 {
 
-    public partial class DictionaryWindow : Window
+    public partial class DictionaryView : UserControl
     {
-        public DictionaryWindow()
+        public DictionaryView()
         {
             InitializeComponent();
         }
 
- 
+
         private async void BuscarPalabra_Click(object sender, RoutedEventArgs e)
         {
             DictionaryService service = new();

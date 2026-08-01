@@ -1,17 +1,16 @@
 ﻿using Podcastner.Models;
 using Podcastner.Services;
 using System.Windows;
+using System.Windows.Controls;
 
-namespace Podcastner
+namespace Podcastner.Views
 {
-    /// <summary>
-    /// Lógica de interacción para SavedWordsWindow.xaml
-    /// </summary>
-    public partial class SavedWordsWindow : Window
+   
+    public partial class WordsView : UserControl
     {
         private readonly SavesWord WordService = new();
 
-        public SavedWordsWindow()
+        public WordsView()
         {
             InitializeComponent();
             WordsList.ItemsSource = WordService.GetWords();
@@ -28,7 +27,7 @@ namespace Podcastner
             WordsList.ItemsSource = WordService.GetWords();
         }
 
-
+  
     }
 }
-    
+
