@@ -30,6 +30,12 @@ public partial class MainWindow : Window
                 case "Podcast":
                     MainContent.Content = new PodcastView();
                     break;
+                case "Dictionary": 
+                    MainContent.Content = new DictionaryView();
+                    break;
+                case "Words":
+                    MainContent.Content = new WordsView();
+                    break;
                 default:
                     break;
             }
