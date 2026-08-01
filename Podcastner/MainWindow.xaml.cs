@@ -14,6 +14,7 @@ public partial class MainWindow : Window
     private readonly MediaPlayer player = new();
     private readonly DispatcherTimer timer = new();
     private readonly DatabaseService database = new();
+    WhisperService whisper = new();
     private Episode episodioActual = new();
     private bool usuarioMoviendoBarra = false;
     private readonly FavoriteService favoriteService = new();
@@ -126,9 +127,8 @@ public partial class MainWindow : Window
     }
     private async void Window_Loaded(object sender, RoutedEventArgs e)
     {
-        WhisperService whisper = new();
 
-        string model = await whisper.DownloadModelAsync();
+        await whisper.InitializeAsync();
 
     }
     private async void CargarPodcasts(object sender, RoutedEventArgs e)
@@ -206,7 +206,7 @@ public partial class MainWindow : Window
         
         player.Play();
 
-        WhisperService whisper = new();
+ 
         AudioConverter converter = new();
 
  
@@ -218,14 +218,20 @@ public partial class MainWindow : Window
         string wavPath = converter.ConvertMp3ToWav(mp3Path);
 
         MessageBox.Show(wavPath);
-    
-        string texto = await whisper.TranscribeAsync(wavPath);
+   
+        try
+        {
+            string texto = await whisper.TranscribeAsync(wavPath);
+            MessageBox.Show(texto);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.ToString());
+        }
 
-        MessageBox.Show(texto);
 
-      
 
-    
+
     }
 
     private void AudioSlider_PreviewMouseDown(object sender, MouseButtonEventArgs e)
