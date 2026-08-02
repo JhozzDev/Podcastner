@@ -49,35 +49,32 @@ namespace Podcastner.Services
         {
             try
             {
+           
                 MessageBox.Show("1");
 
                 await InitializeAsync();
 
-                MessageBox.Show("2");
-
                 var sb = new StringBuilder();
-
+ MessageBox.Show("2");
                 using var processor = _factory!
                     .CreateBuilder()
                     .WithLanguage("en")
                     .Build();
 
-                MessageBox.Show("3");
-
+               
                 using var fileStream = File.OpenRead(wavPath);
-
-                MessageBox.Show("4");
+                MessageBox.Show("3");
 
                 await foreach (var segment in processor.ProcessAsync(fileStream))
                 {
-                    MessageBox.Show(segment.Text);
-
+                 
                     sb.AppendLine(segment.Text);
                 }
 
-                MessageBox.Show("5");
-
+                MessageBox.Show(sb.ToString());
                 return sb.ToString();
+
+
             }
             catch (Exception ex)
             {

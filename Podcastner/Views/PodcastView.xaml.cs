@@ -33,6 +33,21 @@ public partial class PodcastView : UserControl
 
     }
 
+    private void SubtitlesOn(object sender, EventArgs e)
+    {
+        if( SubtitleBox.Visibility == Visibility.Visible)
+        {
+            SubtitleBox.Visibility = Visibility.Collapsed;
+            EpisodeList.Visibility = Visibility.Visible;
+        }
+        else
+        {
+            SubtitleBox.Visibility = Visibility.Visible;
+            EpisodeList.Visibility = Visibility.Collapsed;
+        }
+
+    }
+
     private void Timer_Tick(object? sender, EventArgs e)
     {
         if (!player.NaturalDuration.HasTimeSpan)
@@ -159,16 +174,16 @@ public partial class PodcastView : UserControl
 
         string mp3Path = await whisper.DownloadAudioAsync(episodioActual.AudioUrl);
 
-        MessageBox.Show(mp3Path);
+    
 
 
         string wavPath = converter.ConvertMp3ToWav(mp3Path);
 
-        MessageBox.Show(wavPath);
-
+      
         try
         {
             string texto = await whisper.TranscribeAsync(wavPath);
+            SubtitleText.Text = texto;
             MessageBox.Show(texto);
         }
         catch (Exception ex)
