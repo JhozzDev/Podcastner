@@ -45,44 +45,30 @@ namespace Podcastner.Services
         }
 
 
-        public async Task<string> TranscribeAsync(string wavPath)
+        public async Task<string> TranscribeAsync(string wavPath, IProgress<string>? progress = null)
         {
-            try
+            return await Task.Run(async () =>
             {
-           
-                MessageBox.Show("1");
-
-                await InitializeAsync();
+                await InitializeAsync().ConfigureAwait(false);
 
                 var sb = new StringBuilder();
- MessageBox.Show("2");
+
                 using var processor = _factory!
                     .CreateBuilder()
                     .WithLanguage("en")
                     .Build();
 
-               
                 using var fileStream = File.OpenRead(wavPath);
-                MessageBox.Show("3");
 
-                await foreach (var segment in processor.ProcessAsync(fileStream))
+                await foreach (var segment in processor.ProcessAsync(fileStream).ConfigureAwait(false))
                 {
-                 
                     sb.AppendLine(segment.Text);
+                    progress?.Report(sb.ToString()); 
                 }
 
-                MessageBox.Show(sb.ToString());
                 return sb.ToString();
-
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-                throw;
-            }
+            }).ConfigureAwait(false);
         }
-
         public async Task<string> DownloadAudioAsync(string audioUrl)
         {
             using HttpClient client = new();

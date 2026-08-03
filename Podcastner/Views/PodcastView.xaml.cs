@@ -154,7 +154,7 @@ public partial class PodcastView : UserControl
         }
     }
 
-    async private void Play_Click(object sender, RoutedEventArgs e)
+    private async void Play_Click(object sender, RoutedEventArgs e)
     {
         if (episodioActual == null)
         {
@@ -162,40 +162,31 @@ public partial class PodcastView : UserControl
             return;
         }
 
-        player.Open(new Uri(episodioActual.AudioUrl));
-
-        player.MediaOpened += Player_MediaOpened;
-
-        player.Play();
-
-
-        AudioConverter converter = new();
-
-
-        string mp3Path = await whisper.DownloadAudioAsync(episodioActual.AudioUrl);
-
-    
-
-
-        string wavPath = converter.ConvertMp3ToWav(mp3Path);
-
-      
         try
         {
-            string texto = await whisper.TranscribeAsync(wavPath);
-            SubtitleText.Text = texto;
-            MessageBox.Show(texto);
+            player.Open(new Uri(episodioActual.AudioUrl));
+            player.MediaOpened += Player_MediaOpened;
+            player.Play();
+
+            AudioConverter converter = new();
+
+            string mp3Path = await whisper.DownloadAudioAsync(episodioActual.AudioUrl);
+            string wavPath = converter.ConvertMp3ToWav(mp3Path);
+
+            var progress = new Progress<string>(texto =>
+            {
+                SubtitleText.Text = texto; 
+            });
+
+            string textoFinal = await whisper.TranscribeAsync(wavPath, progress);
+
+            MessageBox.Show(textoFinal);
         }
         catch (Exception ex)
         {
-            MessageBox.Show(ex.ToString());
+            MessageBox.Show("Error en Play_Click: " + ex);
         }
-
-
-
-
     }
-
     private void AudioSlider_PreviewMouseDown(object sender, MouseButtonEventArgs e)
     {
         usuarioMoviendoBarra = true;
